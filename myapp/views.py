@@ -19,6 +19,8 @@ def student_api(request):
   serializer = StudentSerializer(stu, many=True)
   return Response(serializer.data)
 
+ #POST
+ 
  if request.method == 'POST':
   serializer = StudentSerializer(data=request.data)
   if serializer.is_valid():
@@ -26,6 +28,8 @@ def student_api(request):
    return Response({'msg':'Data Created'})
   return Response(serializer.errors)
 
+ #PUT
+ 
  if request.method == 'PUT':
   id = request.data.get('id')
   stu = Student.objects.get(pk=id)
@@ -35,6 +39,8 @@ def student_api(request):
    return Response({'msg':'Data Updated'})
   return Response(serializer.errors)
 
+ #DELETE
+ 
  if request.method == 'DELETE':
   id = request.data.get('id')
   stu = Student.objects.get(pk=id)
